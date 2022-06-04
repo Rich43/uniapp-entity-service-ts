@@ -1,5 +1,5 @@
 import winston from 'winston';
-import config from '../config/default.json';
+import config from 'config';
 
 const logger = winston.createLogger({
     level: 'info',
@@ -7,7 +7,7 @@ const logger = winston.createLogger({
         winston.format.splat(),
         winston.format.simple(),
     ),
-    defaultMeta: { service: config.name },
+    defaultMeta: { service: config.get('name') },
     transports: [
         //
         // - Write all logs with importance level of `error` or less to `error.log`
