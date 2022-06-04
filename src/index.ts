@@ -1,6 +1,6 @@
 import express from 'express';
-import config from './config.json';
-import logger from './logging';
+import config from './config/config.json';
+import logger from './system/logging';
 
 const app = express();
 
