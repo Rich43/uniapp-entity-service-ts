@@ -1,9 +1,14 @@
+import express from 'express';
 import config from './config.json';
-const express = require('express')
-const app = express()
+import logger from './logging';
 
-app.get('/', function (req: any, res: any) {
+const app = express();
+
+app.get('/', (req: any, res: any) => {
     res.send('Hello World');
-})
+});
 
-app.listen(config.port, () => console.log(`Server running on port ${config.port}`));
+app.listen(
+    config.port,
+    () => logger.log('info', 'Server running on port %s', config.port),
+);
