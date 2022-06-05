@@ -10,7 +10,9 @@ const app = express();
 
 home(app);
 
-app.listen(
-    config.get('port'),
-    () => logger.log('info', 'Server running on port %s', config.get('port')),
-);
+sequelize.sync().then(() => {
+    app.listen(
+        config.get('port'),
+        () => logger.log('info', 'Server running on port %s', config.get('port')),
+    );
+});

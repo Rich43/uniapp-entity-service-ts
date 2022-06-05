@@ -16,7 +16,7 @@ interface Entity {
         {
             name: UNIQUE_CONSTRAINT_NAME_PARENT,
             unique: true,
-            fields: ['name', 'parent'],
+            fields: ['name', 'parentId'],
         },
     ],
 })
