@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize-typescript';
 import config from 'config';
-import Entities from '../model/entities';
+import Entities from '../models/entities';
 
 const sequelize = new Sequelize({
     database: config.get('connectionString'),
