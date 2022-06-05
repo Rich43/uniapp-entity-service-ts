@@ -1,3 +1,5 @@
+// noinspection SpellCheckingInspection
+
 import { Sequelize } from 'sequelize-typescript';
 import config from 'config';
 import Entities from '../models/entities';
