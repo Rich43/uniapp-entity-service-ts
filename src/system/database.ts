@@ -7,4 +7,8 @@ const sequelize = new Sequelize({
     models: [Entities],
 });
 
+export const sync = (sqlize: Sequelize) => {
+    sqlize.sync();
+};
+
 export default sequelize;
