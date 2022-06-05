@@ -1,4 +1,4 @@
-import { Table, Column, Model, HasOne, AllowNull, AutoIncrement, CreatedAt } from 'sequelize-typescript';
+import { Table, Column, Model, HasOne, AllowNull, AutoIncrement, CreatedAt, PrimaryKey } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize/types';
 
 const UNIQUE_CONSTRAINT_NAME_PARENT = 'unique_name_parent';
@@ -23,6 +23,7 @@ export default class Entities extends Model implements Entity {
     @Column(DataTypes.BIGINT.UNSIGNED)
     @AllowNull(false)
     @AutoIncrement
+    @PrimaryKey
     // eslint-disable-next-line @typescript-eslint/indent
     id!: number;
 
