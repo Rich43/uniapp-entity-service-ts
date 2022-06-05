@@ -5,6 +5,7 @@ const logger = winston.createLogger({
     level: 'info',
     format: winston.format.combine(
         winston.format.splat(),
+        winston.format.timestamp(),
         winston.format.simple(),
     ),
     defaultMeta: { service: config.get('name') },
