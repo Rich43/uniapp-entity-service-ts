@@ -1,11 +1,12 @@
-import { Table, Column, Model, HasOne, AllowNull, AutoIncrement, CreatedAt, PrimaryKey } from 'sequelize-typescript';
-import { DataTypes } from 'sequelize/types';
+import { Table, Column, Model, HasOne, AllowNull, AutoIncrement, CreatedAt, PrimaryKey, ForeignKey } from 'sequelize-typescript';
+import { DataTypes } from 'sequelize';
 
 const UNIQUE_CONSTRAINT_NAME_PARENT = 'unique_name_parent';
 
 interface Entity {
     id: number;
     name: string;
+    parentId: number;
     parent: Entity;
     created: Date;
 }
@@ -20,26 +21,31 @@ interface Entity {
     ],
 })
 export default class Entities extends Model implements Entity {
-    @Column(DataTypes.BIGINT.UNSIGNED)
     @AllowNull(false)
     @AutoIncrement
     @PrimaryKey
+    @Column(DataTypes.BIGINT)
     // eslint-disable-next-line @typescript-eslint/indent
     id!: number;
 
-    @Column(DataTypes.CHAR(255))
     @AllowNull(false)
+    @Column(DataTypes.CHAR(255))
     // eslint-disable-next-line @typescript-eslint/indent
     name!: string;
 
-    @Column
     @AllowNull(false)
-    @HasOne(() => Entities)
+    @ForeignKey(() => Entities)
+    @Column(DataTypes.BIGINT)
+    // eslint-disable-next-line @typescript-eslint/indent
+    parentId!: number;
+
+    @HasOne(() => Entities, {})
     // eslint-disable-next-line @typescript-eslint/indent
     parent!: Entity;
 
     @CreatedAt
     @AllowNull(false)
+    @Column
     // eslint-disable-next-line @typescript-eslint/indent
     created!: Date;
 }
