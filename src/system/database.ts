@@ -15,6 +15,7 @@ export const testConnection = async (sqlize: Sequelize) => {
         logger.log('info', 'Connection has been established successfully.');
     } catch (error) {
         logger.log('error', 'Unable to connect to the database:', error);
+        process.exit(1);
     }
 };
 
