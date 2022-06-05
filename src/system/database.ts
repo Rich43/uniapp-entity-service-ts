@@ -4,8 +4,15 @@ import Entities from '../models/entities';
 import logger from './logging';
 
 const sequelize = new Sequelize({
-    database: config.get('connectionString'),
-    dialect: config.get('dialect'),
+    storage: config.get('database.storage'),
+    dialect: config.get('database.dialect'),
+    dialectOptions: {
+        host: config.get('database.host'),
+        port: config.get('database.port'),
+        user: config.get('database.user'),
+        password: config.get('database.password'),
+        database: config.get('database.database'),
+    },
     models: [Entities],
 });
 

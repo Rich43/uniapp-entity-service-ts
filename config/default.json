@@ -1,6 +1,8 @@
 {
   "name": "uniapp-entity-service",
   "port": 3000,
-  "connectionString": "sqlite::memory:",
-  "dialect": "sqlite"
+  "database": {
+    "dialect": "sqlite",
+    "storage": "uniapp-entity-service-dev.sqlite3"
+  }
 }

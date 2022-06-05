@@ -1,6 +1,12 @@
 {
   "name": "uniapp-entity-service",
   "port": 3000,
-  "connectionString": "sqlite://uniapp-entity-service.db",
-  "dialect": "sqlite"
+  "database": {
+    "host": "localhost",
+    "port": 3306,
+    "dialect": "mysql",
+    "user": "root",
+    "password": "Password1",
+    "database": "entities"
+  }
 }
