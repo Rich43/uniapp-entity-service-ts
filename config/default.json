@@ -1,6 +1,7 @@
 {
   "name": "uniapp-entity-service",
   "port": 3000,
+  "logLevel": "debug",
   "database": {
     "dialect": "sqlite",
     "storage": "uniapp-entity-service-dev.sqlite3"

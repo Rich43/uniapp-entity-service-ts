@@ -1,6 +1,7 @@
 {
   "name": "uniapp-entity-service",
   "port": 3000,
+  "logLevel": "info",
   "database": {
     "host": "localhost",
     "port": 3306,
