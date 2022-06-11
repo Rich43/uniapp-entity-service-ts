@@ -1,4 +1,4 @@
-import { Table, Column, Model, HasOne, AllowNull, AutoIncrement, CreatedAt, PrimaryKey, ForeignKey } from 'sequelize-typescript';
+import { AllowNull, AutoIncrement, Column, ForeignKey, HasOne, Model, PrimaryKey, Table } from 'sequelize-typescript';
 import { DataTypes } from 'sequelize';
 
 const UNIQUE_CONSTRAINT_NAME_PARENT = 'unique_name_parent';
@@ -8,7 +8,6 @@ interface Entity {
     name: string;
     parentId: number;
     parent: Entity;
-    created: Date;
 }
 
 @Table({
@@ -19,6 +18,7 @@ interface Entity {
             fields: ['name', 'parentId'],
         },
     ],
+    timestamps: true,
 })
 export default class Entities extends Model implements Entity {
     @AllowNull(false)
@@ -42,10 +42,4 @@ export default class Entities extends Model implements Entity {
     @HasOne(() => Entities, {})
     // eslint-disable-next-line @typescript-eslint/indent
     parent!: Entity;
-
-    @CreatedAt
-    @AllowNull(false)
-    @Column
-    // eslint-disable-next-line @typescript-eslint/indent
-    created!: Date;
 }

@@ -1,17 +1,14 @@
 import { Seeder } from '../seeder';
+import Entities from '../models/entities';
 
 const seedEntities = [
-    { id: 1, name: 'root', parentId: 1, created: new Date() },
+    { id: 1, name: 'root', parentId: 1 },
 ];
-const tableName = 'Entities';
 
-export const up: Seeder = async ({ context: sequelize }) => {
-    await sequelize.getQueryInterface().bulkInsert(tableName, seedEntities);
+export const up: Seeder = async () => {
+    await Entities.bulkCreate(seedEntities);
 };
 
-export const down: Seeder = async ({ context: sequelize }) => {
-    await sequelize.getQueryInterface().bulkDelete(
-        tableName,
-        { id: seedEntities.map((e) => e.id) },
-    );
+export const down: Seeder = async () => {
+    await Entities.destroy({ where: { id: seedEntities.map((seedObj) => seedObj.id) } });
 };

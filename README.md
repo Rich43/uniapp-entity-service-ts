@@ -41,11 +41,11 @@ export const down: Migration = async ({ context: sequelize }) => {
 
 ## Migrate up
 
-`./migrator.sh up`
+`npm run migrator_up`
 
 ## Migrate down
 
-`./migrator.sh down`
+`npm run migrator_down`
 
 # Seeders
 
@@ -57,28 +57,25 @@ Example seeder:
 
 ```typescript
 import { Seeder } from '../seeder';
+import Entities from '../models/entities';
 
 const seedEntities = [
-    { id: 1, name: 'root', parentId: 1, created: new Date() },
+    { id: 1, name: 'root', parentId: 1 },
 ];
-const tableName = 'entities';
 
-export const up: Seeder = async ({ context: sequelize }) => {
-    await sequelize.getQueryInterface().bulkInsert(tableName, seedEntities);
+export const up: Seeder = async () => {
+    await Entities.bulkCreate(seedEntities);
 };
 
-export const down: Seeder = async ({ context: sequelize }) => {
-    await sequelize.getQueryInterface().bulkDelete(
-        tableName,
-        { id: seedEntities.map((e) => e.id) },
-    );
+export const down: Seeder = async () => {
+    await Entities.destroy({ where: { id: seedEntities.map((seedObj) => seedObj.id) } });
 };
 ```
 
 ## Migrate seeds up
 
-`./seeder.sh up`
+`npm run seeder_up`
 
 ## Migrate seeds down
 
-`./seeder.sh down`
+`npm run seeder_down`
