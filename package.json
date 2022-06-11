@@ -6,8 +6,13 @@
   "scripts": {
     "serve": "\"nodemon -q src/index.ts\"",
     "initialise": "ts-node src/initialise.ts",
+    "initialise_prod": "cross-env NODE_ENV=production ts-node src/initialise.ts",
     "migrator": "ts-node src/migrator.ts",
+    "migrator_up": "ts-node src/migrator.ts up",
+    "migrator_up_prod": "cross-env NODE_ENV=production ts-node src/migrator.ts up",
     "seeder": "ts-node src/seeder.ts",
+    "seeder_up": "ts-node src/seeder.ts up",
+    "seeder_up_prod": "cross-env NODE_ENV=production ts-node src/seeder.ts up",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "npm run build",
     "start": "cross-env NODE_ENV=production ts-node src/index.ts",
