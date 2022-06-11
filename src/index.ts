@@ -4,7 +4,7 @@ import logger from './system/logging';
 import home from './controllers/home';
 import sequelize, { testConnection } from './system/database';
 
-testConnection(sequelize);
+testConnection(sequelize).then(() => {});
 
 const app = express();
 
@@ -13,6 +13,6 @@ home(app);
 sequelize.sync().then(() => {
     app.listen(
         config.get('port'),
-        () => logger.log('info', 'Server running on port %s', config.get('port')),
+        () => logger.info('Server running on port %s', config.get('port')),
     );
 });

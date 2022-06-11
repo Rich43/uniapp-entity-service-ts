@@ -3,9 +3,10 @@ Uniapp Entity Service
 
 # Getting Started
 
-1) `./seeder.sh up`
-2) `npm i`
-3) `npm run serve`
+1) `npm i`
+2) `npm run initialise`
+3) `./seeder.sh up`
+4) `npm run serve`
 
 # Migrations
 

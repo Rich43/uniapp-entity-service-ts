@@ -1,8 +1,10 @@
 import { Umzug, SequelizeStorage } from 'umzug';
 import fs from 'fs';
 import path from 'path';
-import sequelize from './system/database';
+import sequelize, { testConnection } from './system/database';
 import logger from './system/logging';
+
+testConnection(sequelize).then(() => {});
 
 logger.debug('Command line arguments: ', process.argv);
 

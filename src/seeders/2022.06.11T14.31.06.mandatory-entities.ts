@@ -3,7 +3,7 @@ import { Seeder } from '../seeder';
 const seedEntities = [
     { id: 1, name: 'root', parentId: 1, created: new Date() },
 ];
-const tableName = 'entities';
+const tableName = 'Entities';
 
 export const up: Seeder = async ({ context: sequelize }) => {
     await sequelize.getQueryInterface().bulkInsert(tableName, seedEntities);
