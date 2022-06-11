@@ -3,10 +3,22 @@ Uniapp Entity Service
 
 # Getting Started
 
-1) `npm i`
-2) `npm run initialise`
-3) `npm run seeder_up`
-4) `npm run serve`
+## Dev
+
+1) Install latest npm
+2) `npm i`
+3) `npm run initialise`
+4) `npm run seeder_up`
+5) `npm run serve`
+
+## Prod
+
+1) Install Docker and latest npm
+2) `docker-compose up -d`
+3) `npm i`
+4) `npm run initialise_prod`
+5) `npm run seeder_up_prod`
+6) `npm run start`
 
 # Migrations
 
