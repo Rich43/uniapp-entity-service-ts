@@ -1,8 +1,13 @@
 Uniapp Entity Service
 =====================
 
-1) `npm i`
-2) `npm run serve`
+# Getting Started
+
+1) `./seeder.sh up`
+2) `npm i`
+3) `npm run serve`
+
+# Migrations
 
 ## Create a migration
 
@@ -40,3 +45,39 @@ export const down: Migration = async ({ context: sequelize }) => {
 ## Migrate down
 
 `./migrator.sh down`
+
+# Seeders
+
+## Create a seeder
+
+`./seeder.sh create --name my-seeder.ts --folder src/seeders`
+
+Example seeder:
+
+```typescript
+import { Seeder } from '../seeder';
+
+const seedEntities = [
+    { id: 1, name: 'root', parentId: 1, created: new Date() },
+];
+const tableName = 'entities';
+
+export const up: Seeder = async ({ context: sequelize }) => {
+    await sequelize.getQueryInterface().bulkInsert(tableName, seedEntities);
+};
+
+export const down: Seeder = async ({ context: sequelize }) => {
+    await sequelize.getQueryInterface().bulkDelete(
+        tableName,
+        { id: seedEntities.map((e) => e.id) },
+    );
+};
+```
+
+## Migrate seeds up
+
+`./seeder.sh up`
+
+## Migrate seeds down
+
+`./seeder.sh down`
