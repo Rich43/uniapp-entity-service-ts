@@ -26,7 +26,7 @@ export default class Entities extends Model implements Entity {
     @PrimaryKey
     @Column(DataTypes.BIGINT)
     // eslint-disable-next-line @typescript-eslint/indent
-    id!: number;
+    declare id: number;
 
     @AllowNull(false)
     @Column(DataTypes.CHAR(255))

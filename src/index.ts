@@ -1,18 +1,18 @@
-import express from 'express';
-import config from 'config';
-import logger from './system/logging';
-import home from './controllers/home';
-import sequelize, { testConnection } from './system/database';
+import { $log } from '@tsed/common';
+import { PlatformExpress } from '@tsed/platform-express';
+import Server from './Server';
 
-testConnection(sequelize).then(() => {});
+async function bootstrap() {
+    try {
+        const platform = await PlatformExpress.bootstrap(Server);
+        await platform.listen();
 
-const app = express();
+        process.on('SIGINT', () => {
+            void platform.stop();
+        });
+    } catch (error) {
+        $log.error({ event: 'SERVER_BOOTSTRAP_ERROR', error });
+    }
+}
 
-home(app);
-
-sequelize.sync().then(() => {
-    app.listen(
-        config.get('port'),
-        () => logger.info('Server running on port %s', config.get('port')),
-    );
-});
+void bootstrap();

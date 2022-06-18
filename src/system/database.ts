@@ -2,7 +2,7 @@
 
 import { Sequelize, SequelizeOptions } from 'sequelize-typescript';
 import config from 'config';
-import Entities from '../models/entities';
+import Entities from '../models/Entities';
 import logger from './logging';
 
 const DATABASE_STORAGE = 'database.storage';

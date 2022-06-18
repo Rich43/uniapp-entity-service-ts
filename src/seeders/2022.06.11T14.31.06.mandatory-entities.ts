@@ -1,5 +1,5 @@
 import { Seeder } from '../seeder';
-import Entities from '../models/entities';
+import Entities from '../models/Entities';
 
 const seedEntities = [
     { id: 1, name: 'root', parentId: 1 },

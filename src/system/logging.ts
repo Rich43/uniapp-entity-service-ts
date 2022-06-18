@@ -1,8 +1,14 @@
 import winston from 'winston';
 import config from 'config';
+import { AbstractConfigSetLevels } from 'winston/lib/winston/config';
+
+const levels: AbstractConfigSetLevels = {};
+config.get<string[]>('logLevel').forEach((name: string, index: number) => {
+    levels[name] = index;
+});
 
 const logger = winston.createLogger({
-    level: config.get('logLevel'),
+    levels,
     format: winston.format.combine(
         winston.format.splat(),
         winston.format.timestamp(),
