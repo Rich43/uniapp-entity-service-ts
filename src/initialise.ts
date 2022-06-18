@@ -1,6 +1,6 @@
 import sequelize, { testConnection } from './system/database';
 import logger from './system/logging';
 
-testConnection(sequelize).then(() => {});
+await testConnection(sequelize);
 
-sequelize.sync().then(() => logger.info('Database synced, any missing tables have been created.'));
+await sequelize.sync().then(() => logger.info('Database synced, any missing tables have been created.'));

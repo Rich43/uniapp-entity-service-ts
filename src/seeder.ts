@@ -1,10 +1,11 @@
-import { Umzug, SequelizeStorage } from 'umzug';
+import { SequelizeStorage, Umzug } from 'umzug';
 import fs from 'fs';
 import path from 'path';
 import sequelize, { testConnection } from './system/database';
 import logger from './system/logging';
 
-testConnection(sequelize).then(() => {});
+await testConnection(sequelize).then(() => {
+});
 
 logger.debug('Command line arguments: ', process.argv);
 
@@ -19,8 +20,7 @@ const seeder = new Umzug({
     logger,
 });
 
-fs.mkdir(path.join(__dirname, 'seeders'), () => {
-    seeder.runAsCLI().then(() => {});
-});
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
+fs.mkdir(path.join(__dirname, 'seeders'), () => seeder.runAsCLI());
 
 export type Seeder = typeof seeder._types.migration;
